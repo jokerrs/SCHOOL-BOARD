@@ -3,4 +3,4 @@ DirectoryIndex index.php
 
 RewriteEngine on
 
-RewriteRule ^([0-9]+)$ index.php?student=$1
+RewriteRule ^students/([0-9]+)$ index.php?student=$1

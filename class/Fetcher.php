@@ -33,10 +33,39 @@ class Fetcher{
 
 
     public function getStudentFinalResult($StudentId){
+        $GetStudentData = new Students($this->conn);
+        $StudentData = $GetStudentData->getStudent($StudentId);
+        foreach ($StudentData as $Data){
+            $School = (int)$Data['studentSchool'];
+        }
         $AverageStudentGrade = $this->getAverageStudentGrade($StudentId);
+
         $return = 'Fail';
-        if($AverageStudentGrade >= 7){
-            $return = 'Pass';
+
+        if($School === 1) {
+            if ( $AverageStudentGrade >= 7 ) {
+                $return = 'Pass';
+            }
+        }
+        if($School === 2){
+            $AllStudentGradesData = new Students($this->conn);
+            $GradesData = $AllStudentGradesData->getStudentGrades($StudentId);
+            $TotalGradesNumber = $GradesData->rowCount();
+            if($TotalGradesNumber > 1 /*Arrays starts from 0*/) {
+                $Grades = array();
+                foreach ($GradesData as $Data) {
+                    $Grades[] = $Data[ 'grade' ];
+                }
+                $LowestStudentGrade = min($Grades);
+                $Total = array_sum($Grades) - $LowestStudentGrade;
+                $AverageStudentGrade = $Total / ($TotalGradesNumber - 1);
+            }
+            if($TotalGradesNumber < 1){
+                $AverageStudentGrade = $this->getAverageStudentGrade($StudentId);
+            }
+            if ( $AverageStudentGrade > 8 ) {
+                $return = 'Pass (' . $AverageStudentGrade.')';
+            }
         }
         return $return;
     }
@@ -71,29 +100,44 @@ class Fetcher{
                 'id' => $Data['id'],
                 'StudentName' => $Data['studentName'],
                 'StudentSchool' => 'CSM',
-                'StudentGrades' => '',
+                'StudentGrades' => '1',
                 'StudentAverageGrade' => $this->getAverageStudentGrade($StudentId),
                 'FinalResult' => $this->getStudentFinalResult($StudentId)
             );
             $StudentArr['data'][] = $Student;
         }
-        $OutPutData = array(
-            'success' => array(
-                'data' => $StudentArr['data']
-            )
-        );
+        $OutPutData =  $StudentArr['data'];
         if ( $OutPutType === 'JSON' ) {
             header('Access-Control-Allow-Origin: *');
             header('Content-Type: application/json; charset=UTF-8');
-            return json_encode($OutPutData, JSON_PRETTY_PRINT);
+            $return = json_encode($OutPutData, JSON_PRETTY_PRINT);
 
         }
 
         if ( $OutPutType === 'XML' ) {
             header('Content-Type: application/xml; charset=utf-8');
-            $xml = new SimpleXMLElement('<root/>');
-            array_walk_recursive($OutPutData, array ($xml, 'addChild'));
-            return $xml->asXML();
+            function array_xml($array, $root='student', $upper=true){
+                $xml = '';
+                if($root!=null){
+                    $xml .= "<{$root}>\n";
+                }
+                foreach ($array as $key=>$value){
+                    if($upper===true){
+                        $key = strtoupper($key);
+                    }
+                    if(is_array($value)){
+                        foreach ($value as $ChildKey=>$ChildValue){
+                            $xml .= "<{$ChildKey}>". htmlspecialchars(trim($ChildValue))."</{$ChildKey}>";
+                        }
+                    }
+                }
+                if($root!==null){
+                    $xml .= "\n</{$root}>\n";
+                }
+                return $xml;
+            }
+            $return = array_xml($OutPutData, 'student', true);
+
         }
 
         if ( ($OutPutType !== 'XML' && $OutPutType !== 'JSON') || $OutPutType === null ) {

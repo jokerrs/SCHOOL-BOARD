@@ -1,6 +1,5 @@
 <?php
 define('API', 1);
-
 file_exists('../../includes/defines.php')? require '../../includes/defines.php': die('Error! Please Download Full Project');
 
 $GetStudentData = new Fetcher($conn);

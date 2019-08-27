@@ -93,6 +93,15 @@ class Fetcher{
             http_response_code(404);
             die();
         }
+
+        $ListOfGradesData = new Students($this->conn);
+        $ListOfGrades = $ListOfGradesData->getStudentGrades($StudentId);
+        $ListGrades = '';
+        foreach ($ListOfGrades->fetchAll() as $Grades){
+            $ListGrades .= ','.$Grades['grade'];
+        }
+       $ListGrades =  ltrim($ListGrades, ',');
+
         $StudentArr = array();
         $StudentArr['data'] = array();
         foreach ($StudentData->fetchAll() as $Data){
@@ -100,7 +109,7 @@ class Fetcher{
                 'id' => $Data['id'],
                 'StudentName' => $Data['studentName'],
                 'StudentSchool' => 'CSM',
-                'StudentGrades' => '1',
+                'StudentGrades' => $ListGrades,
                 'StudentAverageGrade' => $this->getAverageStudentGrade($StudentId),
                 'FinalResult' => $this->getStudentFinalResult($StudentId)
             );
@@ -116,18 +125,16 @@ class Fetcher{
 
         if ( $OutPutType === 'XML' ) {
             header('Content-Type: application/xml; charset=utf-8');
-            function array_xml($array, $root='student', $upper=true){
+            function array_xml($array, $root='student'){
                 $xml = '';
+                $xml .= "<?xml version=\"1.0\"?>\n";
                 if($root!=null){
                     $xml .= "<{$root}>\n";
                 }
                 foreach ($array as $key=>$value){
-                    if($upper===true){
-                        $key = strtoupper($key);
-                    }
                     if(is_array($value)){
                         foreach ($value as $ChildKey=>$ChildValue){
-                            $xml .= "<{$ChildKey}>". htmlspecialchars(trim($ChildValue))."</{$ChildKey}>";
+                            $xml .= "<{$ChildKey}>". htmlspecialchars(trim($ChildValue))."</{$ChildKey}>\n";
                         }
                     }
                 }
@@ -136,15 +143,11 @@ class Fetcher{
                 }
                 return $xml;
             }
-            $return = array_xml($OutPutData, 'student', true);
-
+            $return = array_xml($OutPutData, 'student');
         }
-
         if ( ($OutPutType !== 'XML' && $OutPutType !== 'JSON') || $OutPutType === null ) {
             $return = NULL;
         }
         return $return;
     }
-
-
 }

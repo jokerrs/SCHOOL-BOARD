@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * if is app not started this will throw a error
+ */
 if ( !defined('RUN')) {
     http_response_code(403);
     die();
@@ -83,7 +85,7 @@ class Fetcher{
      * @param $StudentId
      * @return string|array|null
      */
-    public function getStudentApiResult($StudentId){
+    public function getStudentResult($StudentId){
         $Student = new Students($this->conn);
         $StudentData = $Student->getStudent($StudentId);
         foreach ($StudentData->fetchAll() as $Data){

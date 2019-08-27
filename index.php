@@ -24,4 +24,4 @@ if(!is_numeric($StudentId)){
     die();
 }
 
-print $GetStudentData->getStudentApiResult($StudentId);
+print $GetStudentData->getStudentResult($StudentId);

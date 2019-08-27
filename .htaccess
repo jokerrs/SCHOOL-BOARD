@@ -1,0 +1,6 @@
+Options -Indexes
+DirectoryIndex index.php
+
+RewriteEngine on
+
+RewriteRule ^([0-9]+)$ index.php?student=$1

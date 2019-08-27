@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * if is app not started this will throw a error
+ */
 if ( !defined('RUN')) {
     http_response_code(403);
     die();

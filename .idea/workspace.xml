@@ -3,8 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="43eb72cb-d688-4379-aef6-fa6095a95b61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/students/index.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/class/Fetcher.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Fetcher.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class/Students.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Students.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/defines.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/defines.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/jquery.min.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,11 +103,6 @@
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
               <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3b7f3a3" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3b7f3a3" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@6db8b0be" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
           </expand>
           <select />
         </treeState>
@@ -117,7 +119,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1566900562289</updated>
-      <workItem from="1566900563789" duration="17451000" />
+      <workItem from="1566900563789" duration="17862000" />
     </task>
     <servers />
   </component>

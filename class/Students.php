@@ -1,5 +1,11 @@
 <?php
 
+if ( !defined('RUN')) {
+    http_response_code(403);
+    die();
+}
+
+
 
 class Students {
 

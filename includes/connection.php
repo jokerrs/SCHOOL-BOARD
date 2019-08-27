@@ -1,5 +1,11 @@
 <?php
-_isRun();
+
+if ( !defined('RUN')) {
+    http_response_code(403);
+    die();
+}
+
+
 
 try {
     $conn = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);

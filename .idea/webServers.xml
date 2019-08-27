@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="db89b44e-9e06-4506-bae8-a3120790fad0" name="localhost" url="http://localhost">
-        <fileTransfer host="localhost" port="22" rootFolder="/var/www/html/test" accessType="SFTP">
+        <fileTransfer host="localhost" port="22" rootFolder="/var/www/html/SCHOOL-BOARD-TEST" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

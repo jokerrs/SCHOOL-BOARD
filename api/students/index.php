@@ -9,4 +9,4 @@ if(!is_numeric($StudentId)){
     die();
 }
 
-print $GetStudentData->getStudentApiResult($_GET['student']);
+print $GetStudentData->getStudentApiResult($StudentId);

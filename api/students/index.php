@@ -8,4 +8,5 @@ if(!is_numeric($StudentId)){
     http_response_code(403);
     die();
 }
+
 print $GetStudentData->getStudentApiResult($_GET['student']);

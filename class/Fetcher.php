@@ -32,6 +32,10 @@ class Fetcher{
     }
 
 
+    /**
+     * @param $StudentId
+     * @return string
+     */
     public function getStudentFinalResult($StudentId){
         $GetStudentData = new Students($this->conn);
         $StudentData = $GetStudentData->getStudent($StudentId);
@@ -128,7 +132,7 @@ class Fetcher{
             function array_xml($array, $root='student'){
                 $xml = '';
                 $xml .= "<?xml version=\"1.0\"?>\n";
-                if($root!=null){
+                if($root!==null){
                     $xml .= "<{$root}>\n";
                 }
                 foreach ($array as $key=>$value){

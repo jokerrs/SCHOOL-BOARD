@@ -106,13 +106,15 @@ class Fetcher{
         }
        $ListGrades =  ltrim($ListGrades, ',');
 
+        $SchoolName = new Students($this->conn);
+
         $StudentArr = array();
         $StudentArr['data'] = array();
         foreach ($StudentData->fetchAll() as $Data){
             $Student = array(
                 'id' => $Data['id'],
                 'StudentName' => $Data['studentName'],
-                'StudentSchool' => 'CSM',
+                'StudentSchool' => $SchoolName->getStudentSchool($StudentId),
                 'StudentGrades' => $ListGrades,
                 'StudentAverageGrade' => $this->getAverageStudentGrade($StudentId),
                 'FinalResult' => $this->getStudentFinalResult($StudentId)

@@ -25,7 +25,19 @@ class Students {
     }
 
 
-
+    public function getStudentSchool($StudentId){
+        $StudentData = $this->conn->prepare('SELECT studentSchool FROM students WHERE id = ?');
+        $StudentData->execute([$StudentId]);
+        foreach ($StudentData->fetchAll() as $School){
+            $School = $School['studentSchool'];
+        }
+        $GetSchoolName = $this->conn->prepare('SELECT schoolBoard FROM school where id = ?');
+        $GetSchoolName->execute([$School]);
+        foreach ($GetSchoolName->fetchAll() as $School){
+            $School = $School['schoolBoard'];
+        }
+        return $School;
+    }
 
 
 }

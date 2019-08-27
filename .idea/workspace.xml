@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43eb72cb-d688-4379-aef6-fa6095a95b61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Fetcher.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Fetcher.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Students.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Students.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/connection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/defines.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/defines.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.sql" beforeDir="false" afterPath="$PROJECT_DIR$/test.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +111,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1566900562289</updated>
-      <workItem from="1566900563789" duration="18247000" />
+      <workItem from="1566900563789" duration="18797000" />
     </task>
     <servers />
   </component>

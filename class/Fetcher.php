@@ -75,10 +75,10 @@ class Fetcher{
                 'FinalResult' => $School->getStudentFinalResult($StudentId)
             );
 
-            if((int)$Data['studentSchool'] === 1){
+            if((int)$Data['studentSchool'] === 1 /* In our database 1 is CSM*/){
                 $return = $this->getJsonData($StudentArr);
             }
-            if((int)$Data['studentSchool'] === 2) {
+            if((int)$Data['studentSchool'] === 2 /* In our database 2 is CSMB*/) {
                 $return =  $this->getXmlData($StudentArr);
             }
         }

@@ -24,11 +24,11 @@ foreach ($RequiredFiles as $file) {
     file_exists($path) ? require $path : die('Error! Please Download Full Project');
 }
 
-$GetStudentData = new Fetcher($conn);
 if( isset($_GET['student']) && is_numeric($_GET['student']) ){
 
     $StudentId = $_GET['student'];
 
+    $GetStudentData = new Fetcher($conn);
     print $GetStudentData->getStudentResult($StudentId);
     die();
 }

@@ -64,6 +64,7 @@ class School{
                 $Total = array_sum($Grades) - $LowestStudentGrade;
                 $AverageStudentGrade = $Total / ($TotalGradesNumber - 1);
             }
+                $return = 'Fail (' . $AverageStudentGrade.')';
 
             if ( $AverageStudentGrade > 8 ) {
                 $return = 'Pass (' . $AverageStudentGrade.')';

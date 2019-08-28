@@ -16,7 +16,7 @@ class Fetcher{
     protected $conn;
 
     /**
-     * Builder constructor.
+     * Fetcher constructor.
      * @param $conn
      */
     public function __construct($conn){
@@ -81,24 +81,41 @@ class Fetcher{
         }
         return $return;
     }
+
+    /**
+     * @param array $Data
+     * @return false|string
+     */
+    public function getJsonData(Array $Data){
+        header('Content-Type: application/json; charset=UTF-8');
+        return json_encode($Data, JSON_PRETTY_PRINT);
+    }
+
+    public function getXmlData(Array $Data,$root = 'student'){
+        header('Content-Type: application/xml; charset=utf-8');
+        $xml = '';
+        $xml .= "<?xml version=\"1.0\"?>\n";
+        if($root!==null){
+            $xml .= "<{$root}>\n";
+        }
+        foreach ($array as $key=>$value){
+            if(is_array($value)){
+                foreach ($value as $ChildKey=>$ChildValue){
+                    $xml .= "<{$ChildKey}>". htmlspecialchars(trim($ChildValue))."</{$ChildKey}>\n";
+                }
+            }
+        }
+        if($root!==null){
+            $xml .= "\n</{$root}>\n";
+        }
+        return $xml;
+    }
+
     /**
      * @param $StudentId
      * @return string|array|null
      */
     public function getStudentResult($StudentId){
-        $Student = new Students($this->conn);
-        $StudentData = $Student->getStudent($StudentId);
-        foreach ($StudentData->fetchAll() as $Data){
-            if((int)$Data['studentSchool'] === 1){
-                $OutPutType = 'JSON';
-            }
-            if((int)$Data['studentSchool'] === 2){
-                $OutPutType = 'XML';
-            }
-        }
-        if(!isset($OutPutType)) {
-            $OutPutType = null;
-        }
         $Student = new Students($this->conn);
         $StudentData = $Student->getStudent($StudentId);
         if($StudentData->rowCount() < 1){
@@ -129,38 +146,17 @@ class Fetcher{
             );
             $StudentArr['data'][] = $Student;
         }
+
         $OutPutData =  $StudentArr['data'];
-        if ( $OutPutType === 'JSON' ) {
-            header('Content-Type: application/json; charset=UTF-8');
-            $return = json_encode($OutPutData, JSON_PRETTY_PRINT);
 
-        }
-
-        if ( $OutPutType === 'XML' ) {
-            header('Content-Type: application/xml; charset=utf-8');
-            function array_xml($array, $root='student'){
-                $xml = '';
-                $xml .= "<?xml version=\"1.0\"?>\n";
-                if($root!==null){
-                    $xml .= "<{$root}>\n";
-                }
-                foreach ($array as $key=>$value){
-                    if(is_array($value)){
-                        foreach ($value as $ChildKey=>$ChildValue){
-                            $xml .= "<{$ChildKey}>". htmlspecialchars(trim($ChildValue))."</{$ChildKey}>\n";
-                        }
-                    }
-                }
-                if($root!==null){
-                    $xml .= "\n</{$root}>\n";
-                }
-                return $xml;
+        foreach ($StudentData->fetchAll() as $Data){
+            if($Data['studentSchool'] === 1){
+                return $this->getJsonData($OutPutData);
             }
-            $return = array_xml($OutPutData, 'student');
+            if($Data['studentSchool'] === 2){
+                return $this->getXmlData($OutPutData, 'student');
+            }
         }
-        if ( ($OutPutType !== 'XML' && $OutPutType !== 'JSON') || $OutPutType === null ) {
-            $return = NULL;
-        }
-        return $return;
+            return json_encode(array('Error' => 'Nothing found'), JSON_PRETTY_PRINT);
     }
 }

@@ -11,6 +11,11 @@ version_compare(PHP_VERSION, MINIMUM_PHP, '<') and die('Please update your PHP v
 
 define('BASE', __DIR__);
 
+if(!is_dir('includes')){
+    require BASE . '/installation/index.php';
+    die();
+}
+
 $RequiredFiles = array(
     '/includes/defines.php',        // Database configuration
     '/includes/connection.php',     // Database connection
@@ -22,6 +27,7 @@ $RequiredFiles = array(
 foreach ($RequiredFiles as $file) {
     $path = BASE . $file;
     file_exists($path) ? require $path : die('Error! Please Download Full Project');
+
 }
 
 if( isset($_GET['student']) && is_numeric($_GET['student']) ){

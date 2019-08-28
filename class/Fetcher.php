@@ -131,7 +131,6 @@ class Fetcher{
         }
         $OutPutData =  $StudentArr['data'];
         if ( $OutPutType === 'JSON' ) {
-            header('Access-Control-Allow-Origin: *');
             header('Content-Type: application/json; charset=UTF-8');
             $return = json_encode($OutPutData, JSON_PRETTY_PRINT);
 

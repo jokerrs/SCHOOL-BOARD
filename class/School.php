@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * if is app not started this will throw a error
+ */
+if ( !defined('RUN')) {
+    http_response_code(403);
+    die();
+}
 
 class School{
     /**
@@ -46,11 +52,11 @@ class School{
 
         $return = 'Fail';
 
-        if($School === 1) {
-            if ( $AverageStudentGrade >= 7 ) {
-                $return = 'Pass';
-            }
+        if( ( $School === 1 ) && $AverageStudentGrade >= 7 ) {
+            $return = 'Pass';
         }
+
+
         if($School === 2){
             $AllStudentGradesData = new Students($this->conn);
             $GradesData = $AllStudentGradesData->getStudentGrades($StudentId);

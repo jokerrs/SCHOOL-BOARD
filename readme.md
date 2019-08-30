@@ -1,5 +1,4 @@
-# SCHOOL BOARD TEST
-
+# SCHOOL BOARD
     domain-of-app.test/students/ID
     
 ### Prvobitno pokretanje aplikacije

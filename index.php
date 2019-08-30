@@ -1,6 +1,6 @@
 <?php
 /**
- * This is a test for Quantox
+ * School board app
  */
 
 define('RUN', 1);
